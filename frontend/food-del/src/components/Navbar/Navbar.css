@@ -1,0 +1,73 @@
+.navbar {
+  padding: 24px 32px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.navbar .logo {
+  width: 150px;
+}
+
+.navbar .navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  color: #49557e;
+  font-size: 18px;
+}
+
+.navbar .navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-right: 16px;
+}
+
+.navbar .signin-btn {
+  background: linear-gradient(90deg, #ff914d 0%, #ff5e62 100%);
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 30px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  box-shadow: 0 2px 8px rgba(255, 145, 77, 0.08);
+}
+
+.navbar .signin-btn:hover {
+  background: #49557e;
+  color: #fff;
+}
+
+.navbar .active {
+  padding-bottom: 2px;
+  border-bottom: 2px solid #49557e;
+}
+
+.navbar li {
+  cursor: pointer;
+}
+
+.navbar-search-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+}
+
+.navbar-search-icon .dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #ff5e62;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(255, 94, 98, 0.15);
+}
