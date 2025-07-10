@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nanum+Gothic&family=Outfit:wght@100..900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 12px;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #ff914d;
+}
+
+.app {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  padding: 40px 40px 32px 40px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  } 
+  100%{
+    opacity: 1;
+  }
+}
