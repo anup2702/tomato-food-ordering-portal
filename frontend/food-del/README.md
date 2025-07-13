@@ -1,12 +1,67 @@
-# React + Vite
+# Tomato Food Ordering Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive food ordering web application built with React.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Browse and search for dishes
+- Explore menu categories
+- Add/remove items to cart
+- Place orders
+- Responsive design for desktop and mobile
+- Clean, modern UI
 
-## Expanding the ESLint configuration
+## Screenshots
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![Homepage Screenshot](./screenshots/homepage.png)
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+### Installation
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/anup2702/tomato-food-ordering-portal.git
+    cd tomato-food-ordering-portal
+    ```
+
+2. Install dependencies:
+    ```sh
+    npm install
+    ```
+    or
+    ```sh
+    yarn install
+    ```
+
+3. Start the development server:
+    ```sh
+    npm start
+    ```
+    or
+    ```sh
+    yarn start
+    ```
+
+4. Open [http://localhost:3000](http://localhost:3000) to view in your browser.
+
+## Project Structure
+
+```
+src/
+  assets/           # Images and static assets
+  components/       # Reusable UI components
+  context/          # React context for state management
+  pages/            # Page components (Home, Cart, etc.)
+  App.jsx           # Main app component
+  index.js          # Entry point
+```
+
+## Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what
