@@ -52,3 +52,25 @@
     background: #fff;
     color: #ff914d;
 }
+
+
+@media (max-width:1050px){
+    .header{
+        height: 38vw;
+    }
+    .header-content{
+        max-width: 45%;
+    }
+}
+
+@media (max-width:750){
+    .header-content{
+        max-width: 65%;
+    }
+    .header-content p{
+        display: none;
+    }
+    .header-content button{
+        padding: 2vw 4vw;
+    }
+}
