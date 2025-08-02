@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
-export const StoreContext = createContext(null);
+const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItem] = useState(() => {
@@ -83,7 +83,19 @@ const StoreContextProvider = (props) => {
       const storedToken = localStorage.getItem("token");
       if (storedToken) {
         setToken(storedToken);
-        await loadCartData(storedToken);
+        // Optimistic UI: keep showing local cart until backend responds
+        const response = await axios.post(url + '/api/cart/get', {}, { headers: { token: storedToken } });
+        const rawCart = response.data.cartData;
+        const cleanedCart = {};
+        for (const key in rawCart) {
+          if (rawCart[key] > 0) {
+            cleanedCart[key] = rawCart[key];
+          }
+        }
+        // Only update if backend cart is not empty
+        if (Object.keys(cleanedCart).length > 0) {
+          setCartItem(cleanedCart);
+        }
       }
     }
     loadData();
@@ -115,4 +127,5 @@ const StoreContextProvider = (props) => {
   );
 };
 
+export { StoreContext };
 export default StoreContextProvider;

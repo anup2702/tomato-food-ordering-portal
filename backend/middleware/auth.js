@@ -1,18 +1,25 @@
+// auth.js
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
 
-
+dotenv.config() 
 const authMiddleware = async (req, res, next) => {
-    const {token} = req.headers
-    if(!token){
-        return res.json({success: false, message: 'No Authorized login again'})
+    const authHeader = req.headers.authorization || req.headers.token
+
+    if (!authHeader) {
+        return res.status(401).json({ success: false, message: 'Unauthorized: No token provided' })
     }
+
+    // Support for 'Bearer <token>' format or direct token
+    const token = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader
+
     try {
-        const decodeToken = jwt.verify(token, process.env.JWT_SECRET)
-        req.body.userId = decodeToken.id
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
+        req.user = { id: decoded.id }
         next()
     } catch (error) {
-        console.log(error)
-        res.json({success: false, message: 'Error'})
+        console.error('JWT verification failed:', error.message)
+        return res.status(403).json({ success: false, message: 'Invalid token signature' })
     }
 }
 
