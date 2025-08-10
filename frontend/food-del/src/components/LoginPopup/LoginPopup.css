@@ -1,3 +1,13 @@
+/* Error message styling */
+.login-popup-error {
+    color: #fff;
+    background: #ff5e62;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 14px;
+}
 .login-popup{
     position: fixed;
     top: 0;

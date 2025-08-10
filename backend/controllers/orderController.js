@@ -7,11 +7,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 // Placing user order from frontend
 const placeOrder = async (req, res) => {
 
-    // Use environment variable for frontend URL for flexibility across environments
     const frontend_url = process.env.FRONTEND_URL || 'http://localhost:5173';
-    const deliveryCharge = 2; // Example: 2 INR delivery charge
+    const deliveryCharge = 2;
 
     try {
+        if (!req.body.items || req.body.items.length === 0) {
+            return res.status(400).json({ success: false, message: "Cart is empty." });
+        }
         const newOrder = new orderModel({
             // Use user ID from auth middleware for security
             userId: req.user.id,
@@ -29,8 +31,6 @@ const placeOrder = async (req, res) => {
                 product_data: {
                     name: item.name
                 },
-                // Stripe expects amount in the smallest currency unit (e.g., paise for INR)
-                // The multiplication by 80 was likely a bug.
                 unit_amount: item.price * 100,
             },
             quantity: item.quantity
@@ -47,7 +47,6 @@ const placeOrder = async (req, res) => {
             quantity: 1
         })
 
-
         const session = await stripe.checkout.sessions.create({
             line_items: lineItems,
             mode: 'payment',
@@ -55,8 +54,7 @@ const placeOrder = async (req, res) => {
             cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
         })
 
-        res.json({ success: true, success_url: session.url })
-
+        res.json({ success: true, session_url: session.url })
 
     } catch (error) {
         console.error("Error placing order:", error);
@@ -82,7 +80,7 @@ const verifyOrder = async (req, res) => {
 };
 
 // To list all orders for a user
-const userOrders = async (req, res) => {
+const userOrder = async (req, res) => {
     try {
         const orders = await orderModel.find({ userId: req.user.id });
         res.json({ success: true, data: orders });
@@ -92,4 +90,28 @@ const userOrders = async (req, res) => {
     }
 };
 
-export { placeOrder, verifyOrder, userOrders };
+
+// Listing order for admin panel
+const listOrders = async (req, res) => {
+    try{
+        const order = await orderModel.find({})
+        res.json({ success: true, data: order })
+    } catch ( error){
+        console.error("Error listing orders:", error)
+        res.status(500).json({ success: false, message: 'An error occurred while fetching orders.' })
+    }
+}
+
+// update order status by admin
+const updateOrderStatus = async (req, res) => {
+    try {
+        const updatedOrder = await orderModel.findByIdAndUpdate(req.body.orderId, { status: req.body.status })
+        res.json({ success: true, message: "Order status updated successfully." })
+    }
+    catch (error) {
+        console.error("Error updating order status:", error);
+        res.json({ success: false, message: "An error occurred while updating the order status." });
+    }
+}
+
+export { placeOrder, verifyOrder, userOrder, listOrders, updateOrderStatus };

@@ -3,7 +3,7 @@ import cors from 'cors'
 import { connectDB } from './config/db.js'
 import foodRouter from './routes/foodRoute.js'
 import userRouter from './routes/userRoute.js'
-import 'dotenv/config.js'
+import dotenv from 'dotenv'
 import cartRouter from './routes/cartRoute.js'
 import orderRoute from './routes/orderRoute.js'
 
@@ -11,6 +11,8 @@ import orderRoute from './routes/orderRoute.js'
 // app config
 const app = express()
 const port = 4000
+dotenv.config()
+
 
 
 // middleware
@@ -26,7 +28,6 @@ app.use('/images', express.static('uploads'))
 app.use('/api/user', userRouter)
 app.use('/api/cart', cartRouter)
 app.use('/api/order', orderRoute)
-// app.use('/api/order/place', <p>place order</p>)
 
 app.get('/', (req, res)=>{
     res.send('Api working')

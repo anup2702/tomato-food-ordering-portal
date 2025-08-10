@@ -1,6 +1,7 @@
 import React from 'react'
 import './Footer.css'
 import { assets } from '../../assets/assets'
+import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
       <div className="footer-content">
         <div className='footer-content-left'>
             <img src={assets.logo} alt="" />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus laboriosam placeat voluptatibus? Voluptatum, sed et.</p>
+            <p>Our food-ordering platform connects you with top local restaurants, offering fast delivery, easy customization, and secure payments—all in just a few taps. Whether you're craving comfort food or gourmet meals, we bring deliciousness to your doorstep.</p>
             <div className="social-icons">
                 <img src={assets.facebook_icon} alt="Facebook" />
                 <img src={assets.linkedin_icon} alt="LinkedIn" />
@@ -31,7 +32,7 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <p className='footer-copyright'>Copyright 2025 © Tomato.com - All Right Reserved</p>
+      <p className='footer-copyright'>Build by Anup <a href="https://github.com/anup2702" target="_blank" rel="noopener noreferrer"><FaGithub color="white" /></a></p>
     </div>
   )
 }

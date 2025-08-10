@@ -5,6 +5,11 @@ const addToCart = async (req, res) => {
   try {
     const userId = req.user.id;
     const userData = await userModel.findById(userId);
+
+    if (!userData) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
     const cartData = userData.cartData || {};
 
     const itemId = req.body.itemId;
@@ -18,8 +23,8 @@ const addToCart = async (req, res) => {
     await userModel.findByIdAndUpdate(userId, { cartData });
     res.json({ success: true, message: 'Item added to cart' });
   } catch (error) {
-    console.error(error);
-    res.json({ success: false, message: 'Error adding item to cart' });
+    console.error("Error adding to cart:", error);
+    res.status(500).json({ success: false, message: 'An unexpected error occurred while adding the item to your cart.' });
   }
 };
 
@@ -28,19 +33,27 @@ const removeFromCart = async (req, res) => {
   try {
     const userId = req.user.id;
     const userData = await userModel.findById(userId);
+
+    if (!userData) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
     const cartData = userData.cartData || {};
 
     const itemId = req.body.itemId;
 
-    if (cartData[itemId] > 0) {
+    if (cartData[itemId] && cartData[itemId] > 0) {
       cartData[itemId] -= 1;
+      if (cartData[itemId] === 0) {
+        delete cartData[itemId];
+      }
     }
 
     await userModel.findByIdAndUpdate(userId, { cartData });
     res.json({ success: true, message: 'Item removed from cart' });
   } catch (error) {
-    console.error(error);
-    res.json({ success: false, message: 'Error removing item from cart' });
+    console.error("Error removing from cart:", error);
+    res.status(500).json({ success: false, message: 'An unexpected error occurred while removing the item from your cart.' });
   }
 };
 
@@ -49,11 +62,16 @@ const getCart = async (req, res) => {
   try {
     const userId = req.user.id;
     const userData = await userModel.findById(userId);
+
+    if (!userData) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
     const cartData = userData?.cartData || {};
     res.json({ success: true, cartData });
   } catch (error) {
-    console.error(error);
-    res.json({ success: false, message: 'Error loading cart' });
+    console.error("Error getting cart:", error);
+    res.status(500).json({ success: false, message: 'An unexpected error occurred while loading your cart.' });
   }
 };
 

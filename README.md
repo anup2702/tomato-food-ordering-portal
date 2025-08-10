@@ -1,38 +1,27 @@
-# Tomato - Food Ordering Portal
+# Tomato Food Ordering Portal
 
-This is a full-stack MERN (MongoDB, Express, React, Node.js) application for ordering food online. It features a user-facing frontend for browsing and purchasing food, and a backend to manage users, food items, and orders.
+A modern, responsive full-stack MERN (MongoDB, Express, React, Node.js) food ordering web application.
 
 ## Features
 
-- **User Authentication**: Secure user registration and login functionality using JSON Web Tokens (JWT).
-- **Food Catalog**: Browse a list of available food items fetched from the backend.
-- **Shopping Cart**:
-    - Add or remove items from the cart.
-    - Cart state is persisted for both guest and logged-in users.
-    - Guest carts are stored in `localStorage`.
-    - Carts for logged-in users are saved to the database.
-- **Dynamic UI**: The interface updates in real-time as items are added or removed from the cart.
-- **Order Placement**: Users can proceed to checkout from their cart.
+- User authentication (JWT)
+- Browse/search menu and categories
+- Add/remove items to cart (guest and logged-in users)
+- Place orders and view order history
+- Admin panel for managing food and orders
+- Responsive design for desktop and mobile
+- Clean, modern UI
+
+## Screenshots
+
+<!-- Add your screenshots here if available -->
 
 ## Tech Stack
 
-- **Frontend**:
-  - React.js
-  - React Router DOM
-  - React Context API (for state management)
-  - Axios (for API requests)
-  - CSS3
-
-- **Backend**:
-  - Node.js
-  - Express.js
-  - MongoDB (with Mongoose)
-  - JSON Web Token (JWT) for authentication
-  - CORS
+- **Frontend:** React.js, React Router DOM, Context API, Axios, CSS3
+- **Backend:** Node.js, Express.js, MongoDB (Mongoose), JWT, CORS
 
 ## Project Structure
-
-The repository is organized into three main parts:
 
 ```
 /
@@ -44,21 +33,39 @@ The repository is organized into three main parts:
 ## Getting Started
 
 ### Prerequisites
-
 - Node.js and npm
-- MongoDB (local instance or a cloud service like MongoDB Atlas)
+- MongoDB (local or Atlas)
 
 ### Installation & Setup
 
-1.  **Clone the repository.**
+1. **Clone the repository:**
+    ```sh
+    git clone https://github.com/anup2702/tomato-food-ordering-portal.git
+    cd tomato-food-ordering-portal
+    ```
 
-2.  **Backend Setup:**
-    - Navigate to the `backend` directory: `cd backend`
+2. **Backend Setup:**
+    - Navigate to the backend directory: `cd backend`
     - Install dependencies: `npm install`
     - Create a `.env` file and add your `MONGO_URI` and `JWT_SECRET`.
-    - Start the backend server: `npm run server`
+    - Start the backend server: `npm run server` or `node server.js`
 
-3.  **Frontend Setup:**
+3. **Frontend Setup:**
     - Navigate to the frontend directory: `cd frontend/food-del`
     - Install dependencies: `npm install`
     - Start the frontend development server: `npm run dev`
+
+4. **Admin Panel Setup (optional):**
+    - Navigate to the admin directory: `cd admin`
+    - Install dependencies: `npm install`
+    - Start the admin panel: `npm run dev`
+
+5. Open [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal) to view the app in your browser.
+
+## Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](LICENSE)
