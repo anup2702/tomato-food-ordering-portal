@@ -8,7 +8,7 @@ const StoreContextProvider = (props) => {
     const localCart = localStorage.getItem('cart');
     return localCart ? JSON.parse(localCart) : {};
   });
-  const url = "http://localhost:4000";
+  const url = "https://tomato-food-ordering-portal-backend.onrender.com/";
   const [token, setToken] = useState("");
   const [food_list, setFoodList] = useState([]);
 
