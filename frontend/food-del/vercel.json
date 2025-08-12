@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/*",
-      "destination": "/index.html"
+      "source": "/api/:path*",
+      "destination": "https://tomato-food-ordering-portal-backend.onrender.com"
     }
   ]
 }
